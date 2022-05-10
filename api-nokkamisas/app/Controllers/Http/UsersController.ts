@@ -21,4 +21,14 @@ export default class UsersController {
       throw error
     }
   }
+
+  //editar usuarios id
+  public async put({ response, params }: HttpContextContract) {
+    try {
+      const users = await this.userInterface.putUsersById(params.id)
+      response.json(users)
+    } catch (error) {
+      throw error
+    }
+  }
 }

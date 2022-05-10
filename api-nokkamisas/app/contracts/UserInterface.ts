@@ -3,7 +3,7 @@ declare module '@ioc:Services/UserService' {
   export interface UserInterface {
     getAllUsers(): UserDTO[]
     getById(id: number): UserDTO
-    // putUsers
+    putUsersById(id: number): UserDTO
   }
   const UserService: UserInterface
   export default UserService
