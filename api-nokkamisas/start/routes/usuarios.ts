@@ -5,4 +5,4 @@ Route.group(() => {
   Route.get('/usuarios/:id', 'UsersController.get')
   Route.post('/usuarios/', 'UsersController.post')
   Route.put('/usuarios/:id', 'UsersController.put')
-})
+}).prefix('/api')
