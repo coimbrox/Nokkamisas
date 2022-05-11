@@ -14,7 +14,7 @@ export default class UsersController {
     }
   }
   // listar usuários id
-  public async show({ response, params }: HttpContextContract) {
+  public async get({ response, params }: HttpContextContract) {
     try {
       const resp = await this.userInterface.getById(params.id)
       return response.json(resp)
@@ -26,7 +26,7 @@ export default class UsersController {
   public async post({ request, response }: HttpContextContract) {
     try {
       const parameters = await request.body()
-      const resp = await this.userInterface.postUsers(parameters)
+      const resp = await this.userInterface.post(parameters)
       return response.json(resp)
     } catch (error) {
       throw error
@@ -37,7 +37,7 @@ export default class UsersController {
   public async put({ request, response }: HttpContextContract) {
     try {
       const parameters = await request.body()
-      const resp = await this.userInterface.putUsers(parameters)
+      const resp = await this.userInterface.put(parameters)
       return response.json(resp)
     } catch (error) {
       throw error
