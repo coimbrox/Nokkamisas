@@ -14,6 +14,9 @@ export default class ServicesProvides {
 
   public async ready() {
     // App is read
+    const UserService = (await import('App/Services/UserService')).default
+    this.application.container.bind('@ioc:Services/UserService', () => new UserService())
+
     //#region repositories
     //#endregion
     //#region services

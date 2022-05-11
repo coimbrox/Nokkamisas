@@ -1,13 +1,15 @@
+import { inject } from '@adonisjs/core/build/standalone'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+
 import UserService from '@ioc:Services/UserService'
 import UserDTO from 'App/Models/DTOs/UserDTO'
 
+@inject(['@ioc:Services/UsuariosService'])
 export default class UsersController {
   constructor(protected userService: typeof UserService) {}
   //listar usuários
-  public async getAll({ request, response }: HttpContextContract) {
+  public async getAll({ response }: HttpContextContract) {
     try {
-      const data = request.all()
       const users = await this.userService.getAllUsers()
       response.json(users)
     } catch (error) {
@@ -24,10 +26,11 @@ export default class UsersController {
     }
   }
   //criar usuários
-  public async post({ request, params, response }: HttpContextContract) {
+  public async post({ request, response }: HttpContextContract) {
     try {
       // const { id, nome, email, senha, telefone } = await request.body()
-      const resp = await this.userService.post(params as UserDTO)
+      const user = await request.body()
+      const resp = await this.userService.postUser(user as UserDTO)
       return response.json(resp)
     } catch (error) {
       throw error

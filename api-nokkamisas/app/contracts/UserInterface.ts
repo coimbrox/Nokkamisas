@@ -1,9 +1,9 @@
 declare module '@ioc:Services/UserService' {
   import UserDTO from 'App/Models/DTOs/UserDTO'
   export interface UserInterface {
-    getAllUsers(): UserDTO[]
+    getAllUsers(): Promise<UserDTO[]>
     getById(id: number): UserDTO
-    post(user: UserDTO): UserDTO
+    postUser(user: UserDTO): Promise<UserDTO>
     put(user: UserDTO): UserDTO
     delete(id: number): UserDTO
   }
