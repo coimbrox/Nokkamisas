@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import UserService from '@ioc:Services/UserService'
+import UserDTO from 'App/Models/DTOs/UserDTO'
 
 export default class UsersController {
   constructor(protected userService: typeof UserService) {}
@@ -7,7 +8,7 @@ export default class UsersController {
   public async getAll({ request, response }: HttpContextContract) {
     try {
       const data = request.all()
-      const users = await this.userService.getAllUsers(data)
+      const users = await this.userService.getAllUsers()
       response.json(users)
     } catch (error) {
       throw error
@@ -23,10 +24,10 @@ export default class UsersController {
     }
   }
   //criar usuários
-  public async post({ request, response }: HttpContextContract) {
+  public async post({ request, params, response }: HttpContextContract) {
     try {
-      const parameters = await request.body()
-      const resp = await this.userService.post(parameters)
+      // const { id, nome, email, senha, telefone } = await request.body()
+      const resp = await this.userService.post(params as UserDTO)
       return response.json(resp)
     } catch (error) {
       throw error
@@ -34,10 +35,9 @@ export default class UsersController {
   }
 
   //editar usuarios id
-  public async put({ request, response }: HttpContextContract) {
+  public async put({ params, response }: HttpContextContract) {
     try {
-      const parameters = await request.body()
-      const resp = await this.userService.put(parameters)
+      const resp = await this.userService.put(params as UserDTO)
       return response.json(resp)
     } catch (error) {
       throw error
