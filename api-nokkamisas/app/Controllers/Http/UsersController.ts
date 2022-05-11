@@ -4,9 +4,10 @@ import UserInterface from '@ioc:Services/UserService'
 export default class UsersController {
   constructor(protected userInterface: typeof UserInterface) {}
   //listar usuários
-  public async index({ response }: HttpContextContract) {
+  public async getAll({ request, response }: HttpContextContract) {
     try {
-      const users = await this.userInterface.getAllUsers()
+      const data = request.all()
+      const users = await this.userInterface.getAllUsers(data)
       response.json(users)
     } catch (error) {
       throw error
@@ -15,18 +16,29 @@ export default class UsersController {
   // listar usuários id
   public async show({ response, params }: HttpContextContract) {
     try {
-      const users = await this.userInterface.getById(params.id)
-      response.json(users)
+      const resp = await this.userInterface.getById(params.id)
+      return response.json(resp)
+    } catch (error) {
+      throw error
+    }
+  }
+  //criar usuários
+  public async post({ request, response }: HttpContextContract) {
+    try {
+      const parameters = await request.body()
+      const resp = await this.userInterface.postUsers(parameters)
+      return response.json(resp)
     } catch (error) {
       throw error
     }
   }
 
   //editar usuarios id
-  public async put({ response, params }: HttpContextContract) {
+  public async put({ request, response }: HttpContextContract) {
     try {
-      const users = await this.userInterface.putUsersById(params.id)
-      response.json(users)
+      const parameters = await request.body()
+      const resp = await this.userInterface.putUsers(parameters)
+      return response.json(resp)
     } catch (error) {
       throw error
     }
