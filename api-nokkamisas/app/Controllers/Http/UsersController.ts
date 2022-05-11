@@ -4,7 +4,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import UserService from '@ioc:Services/UserService'
 import UserDTO from 'App/Models/DTOs/UserDTO'
 
-@inject(['@ioc:Services/UsuariosService'])
+@inject(['@ioc:Services/UserService'])
 export default class UsersController {
   constructor(protected userService: typeof UserService) {}
   //listar usuários

@@ -13,7 +13,7 @@ export default class UserService implements UserInterface {
     return userList as UserDTO[]
     // throw new Error('Method not implemented.')
   }
-  public getById(id: number): UserDTO {
+  public getById(id: number): Promise<UserDTO> {
     throw new Error('Method not implemented.')
   }
   public async postUser(user: UserDTO): Promise<UserDTO> {
@@ -26,10 +26,10 @@ export default class UserService implements UserInterface {
 
     return user
   }
-  public put(user: UserDTO): UserDTO {
+  public put(user: UserDTO): Promise<UserDTO> {
     throw new Error('Method not implemented.')
   }
-  public delete(id: number): UserDTO {
+  public delete(id: number): Promise<number> {
     throw new Error('Method not implemented.')
   }
 }
