@@ -26,8 +26,13 @@ export default class UserService implements UserInterface {
 
     return user
   }
-  public put(user: UserDTO): Promise<UserDTO> {
-    throw new Error('Method not implemented.')
+  public async put(model: UserDTO): Promise<UserDTO> {
+    const user = await User.findOrFail('id', model.id)
+    user.nome
+    user.email
+    user.senha
+    user.telefone
+    await user.save()
   }
   public delete(id: number): Promise<number> {
     throw new Error('Method not implemented.')
