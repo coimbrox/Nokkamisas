@@ -1,15 +1,11 @@
 import { DateTime } from 'luxon'
 
-export default class UserDTO {
+export default class AuthDTO {
   public id: number
-
-  public nome: string
 
   public email: string
 
-  public telefone: string
-
-  public senha: string
+  public password: string
 
   public rememberMeToken?: string
 

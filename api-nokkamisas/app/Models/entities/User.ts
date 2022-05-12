@@ -22,4 +22,7 @@ export default class User extends BaseModel {
 
   @column({ columnName: 'telefone' })
   public telefone: string
+
+  @column()
+  public rememberMeToken?: string
 }
